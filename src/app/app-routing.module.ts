@@ -1,25 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
-import { ProgressComponent } from './pages/progress/progress.component';
-import { Graficas1Component } from './pages/graficas1/graficas1.component';
 import { NonpagefoundComponent } from './shared/nonpagefound/nonpagefound.component';
-import { PagesComponent } from './pages/pages.component';
 import { RegisterComponent } from './login/register.component';
 
 
-const routes: Routes = [
-  { 
-    path:'', 
-    component: PagesComponent, 
-    children:[
-      { path: 'dashboard', component:DashboardComponent },
-      { path:'progress', component: ProgressComponent },
-      { path:'graficas1', component: Graficas1Component },
-  ]
-},
 
+const routes: Routes = [
+  { path: '', loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule) },
   { path:'login', component: LoginComponent },
   { path:'register', component: RegisterComponent },
   { path:'**',  component:NonpagefoundComponent },
@@ -27,7 +15,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash:true })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
