@@ -13,11 +13,13 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+
   ],
   imports: [
     BrowserModule,
