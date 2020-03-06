@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { SettingsService } from './services/settings.service';
+import { Ajustes } from './interfaces/ajustes';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  constructor(private settings:SettingsService) { 
+    this.settings.cargarAjustes();
+  }
+
   title = 'adminpro';
 }

@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { GraficaDonaComponent } from '../components/grafica-dona/grafica-dona.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 
 const componentDeclarations = [
@@ -22,7 +23,7 @@ const componentDeclarations = [
 ]
 
 @NgModule({
-    declarations: [componentDeclarations],
+    declarations: [componentDeclarations, AccountSettingsComponent],
     imports: [SharedModule,PagesRoutingModule, RouterModule, CommonModule, FormsModule, ChartsModule],
     exports: [componentDeclarations, SharedModule],
 })

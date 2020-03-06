@@ -6,6 +6,7 @@ import { NonpagefoundComponent } from './nonpagefound/nonpagefound.component';
 import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 const sharedDeclarations = [
     HeaderComponent,
@@ -16,7 +17,7 @@ const sharedDeclarations = [
 ]
 
 @NgModule({
-    imports: [CommonModule, FormsModule],
+    imports: [CommonModule, FormsModule, RouterModule],
     declarations: [sharedDeclarations],
     exports: [sharedDeclarations],
 })
