@@ -12,6 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { GraficaDonaComponent } from '../components/grafica-dona/grafica-dona.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { PromesasComponent } from './promesas/promesas.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 
 const componentDeclarations = [
@@ -23,7 +25,7 @@ const componentDeclarations = [
 ]
 
 @NgModule({
-    declarations: [componentDeclarations, AccountSettingsComponent],
+    declarations: [componentDeclarations, AccountSettingsComponent, PromesasComponent, RxjsComponent],
     imports: [SharedModule,PagesRoutingModule, RouterModule, CommonModule, FormsModule, ChartsModule],
     exports: [componentDeclarations, SharedModule],
 })
