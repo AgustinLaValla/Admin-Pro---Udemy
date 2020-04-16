@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 declare function init_plugins();
 
