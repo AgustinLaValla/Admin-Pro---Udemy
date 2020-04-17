@@ -6,6 +6,6 @@ export class Usuario {
         public img?:string,
         public role?: 'ADMIN_ROLE' | 'USER_ROLE',
         public google?: boolean,
-        public id?:string,
+        public _id?:string,
     ) { };
 };

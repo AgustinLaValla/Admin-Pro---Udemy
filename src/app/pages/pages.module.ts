@@ -14,7 +14,8 @@ import { GraficaDonaComponent } from '../components/grafica-dona/grafica-dona.co
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
-
+import { PipesModule } from '../pipes/pipes.module';
+import { ProfileComponent } from './profile/profile.component'
 
 const componentDeclarations = [
     DashboardComponent, 
@@ -25,8 +26,21 @@ const componentDeclarations = [
 ]
 
 @NgModule({
-    declarations: [componentDeclarations, AccountSettingsComponent, PromesasComponent, RxjsComponent],
-    imports: [SharedModule,PagesRoutingModule, RouterModule, CommonModule, FormsModule, ChartsModule],
+    declarations: [
+        componentDeclarations, 
+        AccountSettingsComponent, 
+        PromesasComponent, 
+        RxjsComponent, ProfileComponent],
+        
+    imports: [
+        SharedModule,
+        PagesRoutingModule, 
+        RouterModule, 
+        CommonModule, 
+        FormsModule, 
+        ChartsModule, 
+        PipesModule
+    ],
     exports: [componentDeclarations, SharedModule],
 })
 export class PagesModule { }

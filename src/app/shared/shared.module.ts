@@ -7,18 +7,20 @@ import { IncrementadorComponent } from '../components/incrementador/incrementado
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { PipesModule } from '../pipes/pipes.module';
 
 const sharedDeclarations = [
     HeaderComponent,
     SidebarComponent,
     BradcrumbsComponent,
     NonpagefoundComponent,
-    IncrementadorComponent
+    IncrementadorComponent,
+    
 ]
 
 @NgModule({
-    imports: [CommonModule, FormsModule, RouterModule],
     declarations: [sharedDeclarations],
+    imports: [CommonModule, FormsModule, RouterModule, PipesModule],
     exports: [sharedDeclarations],
 })
 export class SharedModule { }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Usuario } from '../interfaces/usuario.interface';
 import { URL_SERVICIOS } from '../config/config';
 import { map } from 'rxjs/operators';
@@ -68,6 +68,18 @@ export class UsuariosService {
             return true;
         }));
     };
+
+    updateUsuario(usuario:Usuario) { 
+        const { _id } = usuario;
+        const url = `${URL_SERVICIOS}/usuario/${_id}`;
+        const httpHeaders = new HttpHeaders({'Content-Type':  'application/json', 'token': this.token});
+        return this.http.put(url, usuario, {headers:httpHeaders}).pipe(map((resp) => {
+            Swal.fire('Operación exitosa', 'El usuario se actualizado correctamente', 'success');
+            const usuario = resp['usuario'];
+            this.guardarStorage(usuario._id, this.token, usuario);
+            return true;
+        }));
+    }
 
     logout() { 
         this.usuario = null;
