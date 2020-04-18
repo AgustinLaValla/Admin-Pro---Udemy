@@ -48,10 +48,10 @@
             <div class="card-body">
                 <h4 class="card-title">Fotografia del usuario</h4>
                 <h6 class="card-subtitle">Nombre Usuario</h6>
-                <input type="file" (change)="savePicture($event)"> <br>
                 <img *ngIf="photoSelected == null || photoSelected == undefined" [src]="usuariosService.usuario.img |imagen" 
-                     style="width: 200px;" class="d-block mx-auto">
+                style="width: 200px;" class="d-block mx-auto">
                 <img *ngIf="photoSelected" [src]="photoSelected" class="d-block mx-auto" style="width: 200px;"> <br>
+                <input type="file" (change)="savePicture($event)"> <br>
                 <button (click)="uploadProfileImage()" type="button" class="btn btn-success waves-effect waves-light m-r-10 btn-block  ">
                     <i class="fa fa-save"></i>
                     Actualizar foto

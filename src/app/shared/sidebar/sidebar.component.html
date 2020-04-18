@@ -23,7 +23,7 @@
                 <li class="nav-small-cap">PERSONAL</li>
                 <li *ngFor="let link of sidebar.menu">
                     <a class="has-arrow waves-effect waves-dark"  aria-expanded="false">
-                        <i class="mdi mdi-gauge"></i>
+                        <i class="{{ link.icono }}"></i>
                         <span class="hide-menu">{{ link.titulo }}
                             <span class="label label-rouded label-themecolor pull-right">{{ link.submenu.length }}</span>
                         </span>

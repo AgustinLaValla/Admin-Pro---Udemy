@@ -16,10 +16,9 @@ export class SubirArchivoService {
     const url = `${URL_SERVICIOS}/upload/${tipo}/${id}`; 
     let form = new FormData();
     form.append('imagen', archivo, archivo.name);
-    return this.http.put(url, form).pipe(map((resp)=> {
-      const usuario = resp['usuario'];
-      this.usuariosService.guardarStorage(usuario._id, this.usuariosService.token, usuario);
-      Swal.fire('Operación exitosa', 'La imagen se acutalizó correctamente', 'success');
-    }));
+
+    if(tipo === 'usuarios') { 
+      return this.usuariosService.updateProfilePicture(url, form, id);
+    }
   };
 }
