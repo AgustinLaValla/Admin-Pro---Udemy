@@ -89,6 +89,7 @@ export class UsuariosService {
         localStorage.removeItem('token');
         localStorage.removeItem('id');
         localStorage.removeItem('usuario');
+        localStorage.removeItem('totalHospitales');
         this.router.navigate(['/login']);
     }
 
@@ -110,7 +111,6 @@ export class UsuariosService {
     updateProfilePicture(url:string, form: FormData, id:string) {
 
         return this.http.put(url, form).pipe(map((resp) => {
-            console.log(this.usuario._id, id)
             if(this.usuario._id === id) { 
                 const usuario = resp['usuario'];
                 this.guardarStorage(usuario._id, this.token, usuario);
