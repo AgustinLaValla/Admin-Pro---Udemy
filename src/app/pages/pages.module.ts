@@ -33,22 +33,23 @@ const componentDeclarations = [
     Graficas1Component,
     ProgressComponent,
     PagesComponent,
-    GraficaDonaComponent
+    GraficaDonaComponent,
+    AccountSettingsComponent, 
+    PromesasComponent, 
+    RxjsComponent, 
+    ProfileComponent, 
+    UsuariosComponent,
+    ModalUploadComponent,
+    HospitalesComponent,
+    MedicosComponent,
+    MedicoComponent,
+    BusquedaComponent
 ]
 
 @NgModule({
     declarations: [
         componentDeclarations, 
-        AccountSettingsComponent, 
-        PromesasComponent, 
-        RxjsComponent, 
-        ProfileComponent, 
-        UsuariosComponent,
-        ModalUploadComponent,
-        HospitalesComponent,
-        MedicosComponent,
-        MedicoComponent,
-        BusquedaComponent
+       
     ],
         
     imports: [

@@ -23,6 +23,21 @@ export class UsuariosService {
         this.loadStorage();
     }
 
+    renuevaToken() { 
+        const url = `${URL_SERVICIOS}/login/renuevaToken`;
+        const headers = new HttpHeaders({'token': this.token});
+        return this.http.get(url, {headers:headers}).pipe(map(resp => {
+            this.token = resp['token'];
+            localStorage.setItem('token', this.token);
+            console.log('TOKEN RENOVADO');
+            return true;
+        }), catchError(err => {
+            this.logout();
+            return Swal.fire('Error', 'No fue posible renovar token', 'error');
+            // return;
+        }));
+    }
+
     isLogged() {
         return (!isNullOrUndefined(this.token) && this.token.length > 5) ? true : false;
     }

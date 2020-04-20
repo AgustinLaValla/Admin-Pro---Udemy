@@ -15,6 +15,7 @@ import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { AdminGuard } from '../guards/admin.guard';
+import { VerificaTokenGuard } from '../guards/verifica-token.guard';
 
 
 
@@ -24,19 +25,19 @@ const routes: Routes = [
         component: PagesComponent, 
         canActivate:[LoginGuard],
         children:[
-            { path: 'dashboard', component:DashboardComponent, data: {titulo: 'Dashboard' } },
-            { path:'progress', component: ProgressComponent, data: {titulo: 'Progress' } },
-            { path:'graficas1', component: Graficas1Component, data: {titulo: 'Gráficas' } },
-            { path: 'promesas', component: PromesasComponent, data: {titulo: 'Promesas' } },
-            { path:'account-settings', component: AccountSettingsComponent, data: {titulo: 'Settings' } },
-            { path: 'rxjs' , component: RxjsComponent, data: {titulo: 'Observables' }},
-            { path: 'profile', component: ProfileComponent, data: { titulo: 'Perfil de Usuario' } },
-            { path: 'busqueda/:termino', component: BusquedaComponent, data: { titulo: 'Buscador' } },
+            { path: 'dashboard', component:DashboardComponent, data: {titulo: 'Dashboard' }, canActivate:[VerificaTokenGuard] },
+            { path:'progress', component: ProgressComponent, data: {titulo: 'Progress' , canActivate:[VerificaTokenGuard]} },
+            { path:'graficas1', component: Graficas1Component, data: {titulo: 'Gráficas' }, canActivate:[VerificaTokenGuard] },
+            { path: 'promesas', component: PromesasComponent, data: {titulo: 'Promesas' }, canActivate:[VerificaTokenGuard] },
+            { path:'account-settings', component: AccountSettingsComponent, data: {titulo: 'Settings' }, canActivate:[VerificaTokenGuard] },
+            { path: 'rxjs' , component: RxjsComponent, data: {titulo: 'Observables' }, canActivate:[VerificaTokenGuard]},
+            { path: 'profile', component: ProfileComponent, data: { titulo: 'Perfil de Usuario' }, canActivate:[VerificaTokenGuard] },
+            { path: 'busqueda/:termino', component: BusquedaComponent, data: { titulo: 'Buscador' }, canActivate:[VerificaTokenGuard] },
             //Mantenimientos
-            { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Mantenimiento de usuarios' }, canActivate:[AdminGuard] },
-            { path: 'hospitales', component: HospitalesComponent, data: { titulo: 'Mantenimiento de hospitales' } },
-            { path: 'medicos', component: MedicosComponent, data: { titulo: 'Mantenimiento de Médicos' } },
-            { path: 'medico/:id', component: MedicoComponent, data: { titulo: 'Acutualizar médico' } },
+            { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Mantenimiento de usuarios' }, canActivate:[AdminGuard, VerificaTokenGuard] },
+            { path: 'hospitales', component: HospitalesComponent, data: { titulo: 'Mantenimiento de hospitales' }, canActivate:[VerificaTokenGuard] },
+            { path: 'medicos', component: MedicosComponent, data: { titulo: 'Mantenimiento de Médicos' }, canActivate:[VerificaTokenGuard] },
+            { path: 'medico/:id', component: MedicoComponent, data: { titulo: 'Acutualizar médico' }, canActivate:[VerificaTokenGuard] },
             { path:'', redirectTo: 'dashboard', pathMatch: 'full' }
           ]
     },

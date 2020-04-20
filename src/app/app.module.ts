@@ -12,8 +12,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-
-
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -26,10 +25,10 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PagesModule,
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    SharedModule  
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
