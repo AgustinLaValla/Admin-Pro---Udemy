@@ -25,6 +25,8 @@ import { ModalUploadComponent } from '../components/modal-upload/modal-upload.co
 import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const componentDeclarations = [
     DashboardComponent, 
@@ -45,7 +47,8 @@ const componentDeclarations = [
         ModalUploadComponent,
         HospitalesComponent,
         MedicosComponent,
-        MedicoComponent
+        MedicoComponent,
+        BusquedaComponent
     ],
         
     imports: [
@@ -55,8 +58,9 @@ const componentDeclarations = [
         CommonModule, 
         FormsModule, 
         ChartsModule, 
-        PipesModule
+        PipesModule,
+        HttpClientModule
     ],
-    exports: [componentDeclarations, SharedModule],
+    exports: [componentDeclarations, SharedModule, HttpClientModule],
 })
 export class PagesModule { }
