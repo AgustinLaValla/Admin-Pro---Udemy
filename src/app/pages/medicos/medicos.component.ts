@@ -68,11 +68,12 @@ export class MedicosComponent implements OnInit {
     });
   };
 
-  incrementarDesde(value:number) {
-    console.log(value, this.totalMedicos);
-    if(this.desde < 0) return;
-    if(this.desde >= this.totalMedicos) return;
-    this.desde += value;
+  incrementarDesde(valor:number) {
+    this.desde += valor;
+    if(this.desde < 0) this.desde = 0;
+    if(this.desde > this.totalMedicos) this.desde = this.totalMedicos;
+    if(this.desde % 5 != 1)  this.desde + (Math.round(this.desde % 5));
+    if(this.desde ===  this.totalMedicos) return;
     this.getMedicos();
   };
 

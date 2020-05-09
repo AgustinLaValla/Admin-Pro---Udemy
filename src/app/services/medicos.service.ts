@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { URL_SERVICIOS } from '../config/config';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { UsuariosService } from './usuarios.service';
 import { Medico } from '../interfaces/medicos.interfaces';
 import Swal from 'sweetalert2';
+
+//HEADERS WITH TOKEN ARE SETTED BY INTERCEPTORS, THAT'S WHY I'VE COMMENTED IT
 
 @Injectable({
   providedIn: 'root'
@@ -35,25 +37,25 @@ export class MedicosService {
   };
 
   guardarMedico(medico: Medico) {
-    const token = this.usuariosService.token;
-    const headers = new HttpHeaders({'Content-Type' : 'application/json', 'token': token}); 
+    // const token = this.usuariosService.token;
+    // const headers = new HttpHeaders({'Content-Type' : 'application/json', 'token': token}); 
 
     if(medico._id) { 
       //Update
       const url = `${URL_SERVICIOS}/medicos/${medico._id}`;
-      return this.http.put(url, medico, {headers}).pipe(map(resp => resp['medico']));
+      return this.http.put(url, medico, /*{headers}*/).pipe(map(resp => resp['medico']));
     } else { 
       //create
       const url = `${URL_SERVICIOS}/medicos`;
-      return this.http.post(url, medico, {headers}).pipe(map((resp) => resp['medico']));
+      return this.http.post(url, medico, /*{headers}*/).pipe(map((resp) => resp['medico']));
     };
   };
 
   deleteMedico(id:string) { 
     const url = `${URL_SERVICIOS}/medicos/${id}`;
-    const token = this.usuariosService.token;
-    const headers = new HttpHeaders({'token': token});
-    return this.http.delete(url, {headers});
+    // const token = this.usuariosService.token;
+    // const headers = new HttpHeaders({'token': token});
+    return this.http.delete(url, /*{headers}*/);
   };
 
   updateMedicoPicture(url: string, form: FormData) {

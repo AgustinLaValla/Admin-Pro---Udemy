@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from '../config/config';
 import { map } from 'rxjs/operators';
-import { UsuariosService } from './usuarios.service';
 import Swal from 'sweetalert2';
+
+//HEADERS WITH TOKEN ARE SETTED BY INTERCEPTORS, THAT'S WHY I'VE COMMENTED IT
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class HospitalesService {
 
   public totalHospitales:number = Number(localStorage.getItem('totalHospitales'));
 
-  constructor(private http: HttpClient, private usuarioService: UsuariosService) { }
+  constructor(private http: HttpClient) { }
 
   getHospitales(desde: number = 0, paginate: number = 5) {
     let url = `${URL_SERVICIOS}/hospitales?desde=${desde}&paginate=${paginate}`;
@@ -35,24 +36,18 @@ export class HospitalesService {
 
   createHospital(body: any) {
     let url = `${URL_SERVICIOS}/hospitales`;
-    const token = this.usuarioService.token;
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'token': token });
-    return this.http.post(url, body, { headers });
+    return this.http.post(url, body);
   }
 
   updateHospital(id: string, body: any) {
     let url = `${URL_SERVICIOS}/hospitales/${id}`;
-    const token = this.usuarioService.token;
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'token': token });
-    return this.http.put(url, body, {headers}).pipe(map((resp) => 
+    return this.http.put(url, body).pipe(map((resp) => 
       Swal.fire('Hospital actualizado:', resp['hospital'].nombre, 'success')));
   }
 
   deleteHospital(id: string) {
     let url = `${URL_SERVICIOS}/hospitales/${id}`;
-    const token = this.usuarioService.token;
-    const headers = new HttpHeaders({ 'token': token });
-    return this.http.delete(url, { headers });
+    return this.http.delete(url);
   };
 
 

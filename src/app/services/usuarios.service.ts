@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { SidebarService } from './sidebar.service';
 
+//HEADERS WITH TOKEN ARE SETTED BY INTERCEPTORS, THAT'S WHY I'VE COMMENTED IT
+
 @Injectable({ providedIn: 'root' })
 
 export class UsuariosService {
@@ -25,8 +27,8 @@ export class UsuariosService {
 
     renuevaToken() { 
         const url = `${URL_SERVICIOS}/login/renuevaToken`;
-        const headers = new HttpHeaders({'token': this.token});
-        return this.http.get(url, {headers:headers}).pipe(map(resp => {
+        // const headers = new HttpHeaders({'token': this.token});
+        return this.http.get(url, /*{headers:headers}*/).pipe(map(resp => {
             this.token = resp['token'];
             localStorage.setItem('token', this.token);
             console.log('TOKEN RENOVADO');
@@ -104,8 +106,8 @@ export class UsuariosService {
     updateUsuario(usuario: Usuario) {
         const { _id } = usuario;
         const url = `${URL_SERVICIOS}/usuario/${_id}`;
-        const httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json', 'token': this.token });
-        return this.http.put(url, usuario, { headers: httpHeaders }).pipe(map((resp) => {
+        // const httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json', 'token': this.token });
+        return this.http.put(url, usuario, /*{ headers: httpHeaders }*/).pipe(map((resp) => {
             if (usuario._id === this.usuario._id) {
                 const usuarioDB = resp['usuario'];
                 this.guardarStorage(usuarioDB._id, this.token, usuarioDB, this.menu);
@@ -129,8 +131,8 @@ export class UsuariosService {
 
     getUsers(desde: number = 0, paginate: number = 5) {
         const url = `${URL_SERVICIOS}/usuario?desde=${desde}&paginate=${paginate}`;
-        const headers = new HttpHeaders({'token': this.token});
-        return this.http.get(url, {headers});
+        // const headers = new HttpHeaders({'token': this.token});
+        return this.http.get(url);
     }
 
     buscarUsuario(termino: string) {
@@ -139,8 +141,8 @@ export class UsuariosService {
     };
 
     deleteUsuario(id: string) {
-        const httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json', 'token': this.token });
-        return this.http.delete(`${URL_SERVICIOS}/usuario/${id}`, { headers: httpHeaders });
+        // const httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json', 'token': this.token });
+        return this.http.delete(`${URL_SERVICIOS}/usuario/${id}`, /*{ headers: httpHeaders }*/);
     };
 
 

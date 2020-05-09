@@ -45,8 +45,10 @@ export class UsuariosComponent implements OnInit, OnDestroy {
 
   incrementarDesde(valor: number) {
     this.desde += valor;
-    if (this.desde >= this.totalUsuarios) return;
-    if (this.desde < 0) return;
+    if(this.desde < 0) this.desde = 0;
+    if(this.desde > this.totalUsuarios) this.desde = this.totalUsuarios;
+    if(this.desde % 5 != 1)  this.desde + (Math.round(this.desde % 5));
+    if(this.desde ===  this.totalUsuarios) return;
     this.getUsers();
 
   };

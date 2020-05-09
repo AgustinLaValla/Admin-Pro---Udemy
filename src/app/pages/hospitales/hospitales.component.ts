@@ -83,8 +83,10 @@ export class HospitalesComponent implements OnInit, OnDestroy {
 
   incrementarDesde(valor: number) {
     this.desde += valor;
-    if (this.desde >= this.totalHospitals) return;
-    if (this.desde < 0) return;
+    if(this.desde < 0) this.desde = 0;
+    if(this.desde > this.totalHospitals) this.desde = this.totalHospitals;
+    if(this.desde % 5 != 1)  this.desde + (Math.round(this.desde % 5));
+    if(this.desde ===  this.totalHospitals) return;
     this.getHospitales();
   }
 

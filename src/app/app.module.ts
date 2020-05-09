@@ -1,7 +1,7 @@
 //Angular Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 //Router
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { SharedModule } from './shared/shared.module';
+import { InterceptorService } from './services/interceptor.service';
 
 
 @NgModule({
@@ -30,7 +31,10 @@ import { SharedModule } from './shared/shared.module';
     FormsModule,
     SharedModule  
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi:true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
